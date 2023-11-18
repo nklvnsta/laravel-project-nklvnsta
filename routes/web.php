@@ -1,6 +1,9 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,13 +14,19 @@ use App\Http\Controllers\MainController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//Auth
+Route::get('/create', [AuthController::class, 'create']);
+Route::post('/registr', [AuthController::class, 'registr']);
+
+
+
+
 // Route::get('/', function () {
 //     return view('main.main');
 // });
-
 Route::get('/', [MainController::class, 'index']);
 Route::get('galery/{img}', [MainController::class, 'show']);
-
 Route::get('contacts', function(){
     $contact = [
         'name'=>'Polytech',
