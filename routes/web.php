@@ -16,7 +16,9 @@ Route::get('/', function () {
 //     return view('main.main');
 // });
 
+
 Route::get('/', [MainController::class, 'index']);
+Route::get('galery/{img}', [MainController::class, 'show']);
 
 Route::get('contacts', function(){
     $contact = [
