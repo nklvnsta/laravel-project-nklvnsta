@@ -2,24 +2,31 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
-@@ -13,6 +14,17 @@
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Auth
+Route::get('/create', [AuthController::class, 'create']);
+Route::post('/registr', [AuthController::class, 'registr']);
+
+
+
+
 // Route::get('/', function () {
 //     return view('main.main');
 // });
-
-
 Route::get('/', [MainController::class, 'index']);
 Route::get('galery/{img}', [MainController::class, 'show']);
-
 Route::get('contacts', function(){
     $contact = [
         'name'=>'Polytech',
