@@ -15,10 +15,13 @@
       <th scope="row">{{$article->date}}</th>
       <td>{{$article->name}}</td>
       <td>{{$article->shortDesc}}</td>
+      <td><a href="/article/{{$article->id}}">{{$article->name}}</a></td>
+      <td>{{$article->short_desc}}</td>
       <td>{{$article->desc}}</td>
     </tr>
     @endforeach
   </tbody>
 </table>
 var_dump
+{{$articles->links()}}
 @endsection
