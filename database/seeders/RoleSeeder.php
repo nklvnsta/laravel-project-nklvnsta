@@ -16,16 +16,16 @@ class RoleSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Olga', 
-            'email'=> 'moosbeere_O@mail.ru',
-            'password' => Hash::make('123456'),
-            'role_id'=> 'moderator'
+            'name' => 'Anastasia', 
+            'email'=> 'nastanikol10105@gmail.ru',
+            'password' => Hash::make(123456),
+            'role'=> 'moderator'
         ]);
         User::create([
-            'name' => 'Olga', 
-            'email'=> 'reader@mail.ru',
-            'password' => Hash::make('123456'),
-            'role_id'=> 'reader'
+            'name' => 'Anastasia', 
+            'email'=> 'reader_2@gmail.ru',
+            'password' => Hash::make(123456),
+            'role'=> 'reader'
         ]);
     }
 }

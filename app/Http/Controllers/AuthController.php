@@ -20,7 +20,8 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name, 
             'email'=> $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role'=>'reader'
         ]);
         $user->createToken('myAppToken')->plainTextToken;
         return redirect()->route('login');
@@ -52,7 +53,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
         return redirect('/login');
     }
 }
