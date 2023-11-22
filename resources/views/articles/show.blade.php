@@ -6,16 +6,19 @@
     <h5 class="card-title">{{$article->name}}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">{{$article->short_desc}}</h6>
     <p class="card-text">{{$article->desc}}</p>
+    @can('update', $article)
     <div class="d-inline-flex gap-1">
-        <a href="/article/{{$article->id}}/edit" class="btn btn-primary">Update article</a>
+        <a href="/article/{{$article->id}}/edit" class="btn btn-primary mr-3">Update article</a>
         <form action="/article/{{$article->id}}" method="post">
             @method('DELETE')
             @csrf
             <button class="btn btn-danger" type="submit">Delete</button>
         </form>
     </div>
+    @endcan
   </div>
 </div>
+
 <div class="card text-center"> 
 @if ($errors->any())
         <div class="alert alert-danger">

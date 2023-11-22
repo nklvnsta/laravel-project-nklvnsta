@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 class ArticleController extends Controller
 {
     /**
@@ -22,6 +23,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', [self::class]);
         return view('articles.create');
     }
     /**
@@ -53,11 +55,9 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $comments = Comment::where('article_id', $article->id)->get();
         $comments = Comment::where('article_id', $article->id)->latest()->paginate(2);
         return view('articles.show', ['article'=>$article, 'comments'=>$comments]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -66,8 +66,10 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        Gate::authorize('update', [self::class, $article]);
         return view('articles.edit', ['article'=>$article]);
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -97,6 +99,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        Gate::authorize('delete', [self::class, $article]);
         $comments = Comment::where('article_id', $article->id)->delete();
         $article->delete();
         return redirect('/article');
