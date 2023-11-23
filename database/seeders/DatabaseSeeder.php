@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -18,9 +19,6 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         Article::factory(10)->has(Comment::factory(3))->create();
-        // $this->call([
-        //     ArticleSeeder::class,
-        // ]);
         $this->call([
             ArticleSeeder::class,
             RoleSeeder::class,

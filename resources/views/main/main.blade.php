@@ -1,9 +1,5 @@
 @extends('layout')
 @section('content')
-<p>
-    @foreach($articles as $article)
-    @endforeach
-</p>
 <table class="table">
   <thead>
     <tr>

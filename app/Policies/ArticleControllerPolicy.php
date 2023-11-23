@@ -1,12 +1,17 @@
 <?php
+
 namespace App\Policies;
+
 use App\Models\Article;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
+
+
 class ArticleControllerPolicy
 {
     use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
      *
@@ -17,6 +22,7 @@ class ArticleControllerPolicy
     {
         //
     }
+
     /**
      * Determine whether the user can view the model.
      *
@@ -28,6 +34,7 @@ class ArticleControllerPolicy
     {
         //
     }
+
     /**
      * Determine whether the user can create models.
      *
@@ -40,6 +47,7 @@ class ArticleControllerPolicy
             Response::allow() :
             Response::deny('Вы не модератор');
     }
+
     /**
      * Determine whether the user can update the model.
      *
@@ -49,7 +57,6 @@ class ArticleControllerPolicy
      */
     public function update(User $user, Article $article)
     {
-        
         return $user->role === 'moderator' ?
         Response::allow() :
         Response::deny('Вы не модератор');
@@ -64,7 +71,6 @@ class ArticleControllerPolicy
      */
     public function delete(User $user, Article $article)
     {
-       
         return $user->role === 'moderator' ?
         Response::allow() :
         Response::deny('Вы не модератор');
@@ -81,6 +87,7 @@ class ArticleControllerPolicy
     {
         //
     }
+
     /**
      * Determine whether the user can permanently delete the model.
      *

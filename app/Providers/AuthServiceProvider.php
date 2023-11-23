@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Providers;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\Response;
 use App\Models\Comment;
 use App\Models\User;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -28,6 +31,12 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::before(function(User $user){
             if($user->role === 'moderator') return true;
+        });
+
+        Gate::define('admincomment', function(User $user){
+            if ($user->role === 'moderator'){
+                return Response::allow();
+            } return Response::deny('В доступе отказано!');
         });
 
         Gate::define('comment', function(User $user, Comment $comment){

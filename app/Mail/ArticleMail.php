@@ -1,15 +1,17 @@
 <?php
+
 namespace App\Mail;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-
 use App\Models\Article;
 
 class ArticleMail extends Mailable
 {
     use Queueable, SerializesModels;
+
     /**
      * Create a new message instance.
      *
@@ -19,7 +21,6 @@ class ArticleMail extends Mailable
 
     public function __construct(Article $article)
     {
-        //
         $this->article = $article;
     }
 
@@ -31,6 +32,9 @@ class ArticleMail extends Mailable
     public function build()
     {
         return $this->from(env('MAIL_USERNAME'))
-                    ->view('mail.article', ['article'=>$this->article]);
+                    ->view('mail.article')->
+                    with(
+                        ['article'=>$this->article]
+                    );
     }
 }
